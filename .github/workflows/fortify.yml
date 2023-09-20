@@ -55,7 +55,8 @@ jobs:
       - name: Download Fortify ScanCentral Client
         uses: fortify/gha-setup-scancentral-client@v2
       - name: Package Code + Dependencies
-        run: scancentral package -oss -hv 8.2 -o package.zip
+        #run: scancentral package -oss -hv 8.2 -o package.zip
+        run: scancentral package -oss -o package.zip
 
       # Start Fortify on Demand SAST scan and wait until results complete. For more information on FoDUploader commands, see https://github.com/fod-dev/fod-uploader-java
       - name: Download Fortify on Demand Universal CI Tool
