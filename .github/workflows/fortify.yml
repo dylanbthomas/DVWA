@@ -46,17 +46,21 @@ jobs:
           distribution: 'temurin'
 
       # Setup PHP for DVWA
-      #- name: Setup PHP
-      #  uses: shivammathur/setup-php@v2
-      #  with:
-      #    php-version: '8.2'
-          
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      
+      # Identify open source components for Debricked scan
+      - uses: debricked/actions/cache@v3
+      - uses: debricked/actions/resolve-non-docker@v3    
+      
       # Prepare source+dependencies for upload. 
       - name: Download Fortify ScanCentral Client
         uses: fortify/gha-setup-scancentral-client@v2
       - name: Package Code + Dependencies
-        #run: scancentral package -oss -hv 8.2 -o package.zip
-        run: scancentral package -oss -o package.zip
+        run: scancentral package -oss -hv 8.2 -o package.zip
+        #run: scancentral package -oss -o package.zip
 
       # Start Fortify on Demand SAST scan and wait until results complete. For more information on FoDUploader commands, see https://github.com/fod-dev/fod-uploader-java
       - name: Download Fortify on Demand Universal CI Tool
