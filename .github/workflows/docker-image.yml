@@ -2,8 +2,7 @@ name: Docker Image CI
 
 on:
   workflow_dispatch:
-  push:
-    branches: [master]
+
 
 jobs:
   build:
